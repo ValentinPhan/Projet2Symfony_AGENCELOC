@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+{% block body %}
+{% for message in app.flashes('success') %}
+	<div class="alert alert-success text-center">{{ message }}</div>
+{% endfor %}
+<a href="{{ path('admin_new_vehicule') }}" class="btn btn-success my-2">Ajouter un véhicule</a>
+<table class="table">
+<thead>
+<tr>
+{% for data in champs %}
+    <th>{{ data|capitalize|replace({'_': '&nbsp;'})|raw }}</th>
+{% endfor %}
+<th>Edit</th>
+<th>Suppr</th>
+</tr>
+</thead>
+<tbody>
+{% for vehicule in vehicule %}
+    <tr>
+        <td>{{ vehicule.id }}</td>
+        <td>{{ vehicule.titre }}</td>
+        <td>{{ vehicule.marque }}</td>
+        <td>{{ vehicule.modele }}</td>
+        <td>{{ vehicule.description|raw }}</td>
+        <td><img src="{{ vehicule.photo }}" class="img-fluid" width="100" height="100"></td>
+        <td>{{ vehicule.PrixJournalier }}</td>
+        {# <td>{{ vehicule.DateEnregistrement|date('d/m/Y à H:i:s') }}</td>   #}
+        <td>
+                            {{ vehicule.DateEnregistrement|date("d/m/Y") }}
+                            <br>
+                            {{ vehicule.DateEnregistrement|date("H") }}h{{ vehicule.DateEnregistrement|date("i") }}
+                        </td>
+    
+        <td><a href="{{ path('admin_edit_vehicule', {id: vehicule.id}) }}" class="text-success"><i class="fas fa-edit fa-2x"></i></a></td>
+        <td><a href="{{ path('admin_delete_vehicule', {id: vehicule.id}) }}" class="text-danger"><i class="fas fa-trash fa-2x"></i></a></td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

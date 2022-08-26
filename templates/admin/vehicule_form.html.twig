@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<h1>
+{% if editMode %}
+    BACKOFFICE | Modification des caractéristiques du véhicule
+{% else %}
+    BACKOFFICE | Création d'une fiche véhicule
+{% endif %}
+</h1>
+{{ form_start(formVehicule, {attr: {novalidate: 'novalidate'}}) }}
+{{ form_row(formVehicule.titre, {label: "Titre", attr: {placeholder: "Titre du véhicule"}} )}}
+{{ form_row(formVehicule.marque, {label: "Marque", attr: {placeholder: "Marque du véhicule"}} )}}
+{{ form_row(formVehicule.modele, {label: "Modèle", attr: {placeholder: "Modèle du véhicule"}} )}}
+{{ form_row(formVehicule.description, {label: "Description", attr: {placeholder: "Caractéristiques du véhicule"}} ) }}
+{{ form_row(formVehicule.photo) }}
+{{ form_row(formVehicule.prix_journalier) }}
+{{ form_row(formVehicule.date_enregistrement) }}
+<button type="submit" class="btn btn-primary mt-2">
+{% if editMode %}
+    Enregistrer les modifications
+{% else %}
+    Publier la fiche
+{% endif %}
+</button>
+{{ form_end(formVehicule) }}
+{% endblock %}

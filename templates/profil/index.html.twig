@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+<table class="table">
+<thead>
+<tr>
+<th>Contenu</th>
+	<th>Date</th>
+	<th>Article</th>
+</tr>
+</thead>
+<tbody>
+{% for commande in commandes %}
+	<tr>
+		<td>{{ commande.content }}</td>
+		<td>{{ commande.createdAt|date('d/m/Y à H:i:s') }}</td>
+		<td><a href="{{ path('vehicule_show', {id: commande.vehicule.id}) }}"></a>{{ commande.vehicule.title }}</td>
+	</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}
