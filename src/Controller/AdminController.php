@@ -51,6 +51,6 @@ class AdminController extends AbstractController
         $manager->remove($vehicule);
         $manager->flush();
         $this->addFlash('success', "Le véhicule a bien été retiré de la base de données !");
-        return $this->redirectToRoute("vehicule_articles");
+        return $this->redirectToRoute("admin_vehicule");
     }
 }
